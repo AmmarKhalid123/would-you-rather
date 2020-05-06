@@ -129,7 +129,7 @@ export function _getQuestions () {
   return new Promise((res, rej) => {
     setTimeout(() => res({...questions}), 1000)
   })
-}
+} 
 
 function formatQuestion ({ optionOneText, optionTwoText, author }) {
   return {

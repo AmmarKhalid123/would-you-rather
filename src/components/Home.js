@@ -1,18 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux';
+import { useSelector, shallowEqual } from 'react-redux';
 import Question from './Question';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, Button, Media } from 'reactstrap';
-
-
-const mapStateToProps = (state) => {    
-    return {
-        users: state.users,
-        questions: state.questions,
-        authedUser: state.authedUser
-    }
-}
-
+import { Redirect } from 'react-router-dom';
 
 function Home(props) {
     const [currentQuestions, changePage] = useState('answered')
@@ -21,20 +12,27 @@ function Home(props) {
     const handleClick = (a) => {
         changePage(a)
     }
+    const {users, questions, authedUser} = useSelector( (state) => {    
+        return {
+            users: state.users,
+            questions: state.questions,
+            authedUser: state.authedUser
+        }
+    }, shallowEqual)
     
-    const questionIds = Object.keys(props.questions)
-    if (questionIds.length !== 0){
+    if (authedUser !== undefined && users !== undefined && authedUser !== null){
+        const questionIds = Object.keys(questions)
         return(
             <div>
-            <Row className='row-content mt-2'>
+            <Row className='mt-2'>
                     <Col md={{size: 6, offset: 3}}>
                         <Button color="primary" disabled={currentQuestions !== 'unanswered'} block
                         onClick={() => handleClick('answered')}>
-                            Answered Q.
+                            Answered Questions
                         </Button>
                         <Button color="primary" disabled={currentQuestions !== 'answered'} block
                         onClick={() => handleClick('unanswered')}>
-                            UnAnswered Q.
+                            UnAnswered Questions
                         </Button>        
                     </Col>
                 </Row>
@@ -42,12 +40,12 @@ function Home(props) {
                 <Col md={{size: 6, offset: 3}}>
                     {currentQuestions === 'answered' 
                     ? <Media list>
-                        {questionIds.filter(id => Object.keys(props.users[props.authedUser].answers).includes(id))
-                    .map(id => <Question ques={props.questions[id]}/>)}
+                        {questionIds.filter(id => Object.keys(users[authedUser].answers).includes(id))
+                    .map(id => <Question key={id} status='answered' change={props.change} ques={questions[id]}/>)}
                     </Media>
                     : <Media list>
-                        {questionIds.filter(id => Object.keys(props.users[props.authedUser].answers).indexOf(id) === -1)
-                    .map((id) => <Question ques={props.questions[id]} />)
+                        {questionIds.filter(id => Object.keys(users[authedUser].answers).indexOf(id) === -1)
+                    .map((id) => <Question key={id} status='unanswered' change={props.change} ques={questions[id]} />)
                     }
                     </Media>
                     }
@@ -58,8 +56,8 @@ function Home(props) {
     }
     else{
         return (
-            <div></div>
+            <Redirect to='/' />
         )
     }
 }
-export default connect(mapStateToProps)(Home)
+export default Home
