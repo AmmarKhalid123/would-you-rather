@@ -57,7 +57,7 @@ function Login (props) {
                     </DropdownMenu>
                     </Dropdown>
                     
-                    <Link to='/home'>
+                    <Link to='/questions'>
                     <Button onClick={goHome} disabled={user === null} >
                         <span>Login</span>
                     </Button>

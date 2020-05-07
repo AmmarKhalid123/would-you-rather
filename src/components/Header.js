@@ -32,7 +32,7 @@ export default function Header (props) {
                     <Collapse isOpen={isNavOpen} navbar>
                     <Nav navbar className='ml-4'>
                         <NavItem>
-                            <NavLink className="nav-link" to={props.id !== null ? '/home' : '/'}>
+                            <NavLink className="nav-link" to={props.id !== null ? '/questions' : '/'}>
                             <FontAwesomeIcon icon={faHome}></FontAwesomeIcon> Home
                             </NavLink> 
                         </NavItem>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import {Redirect, Route} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import { shallowEqual } from '@babel/types';
 import { postQuestion } from '../redux/ActionCreators';
 
@@ -24,7 +24,7 @@ export default function NewQuestion (props) {
     if (authedUser !== null && !goHome) {
         console.log('in Newques =>',authedUser)
         return(
-            <Form model='newQuestion' onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
                     <h4>Create Your Question</h4>
                 <FormGroup>
                     <Label htmlFor='optionOne'>Would You Rather</Label>
@@ -48,7 +48,7 @@ export default function NewQuestion (props) {
     }
     else {
         return(
-            <Redirect to='/home' />
+            <Redirect to='/questions' />
         )
     }
     

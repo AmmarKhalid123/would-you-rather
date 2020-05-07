@@ -3,7 +3,7 @@ import { useSelector, shallowEqual } from 'react-redux';
 import Question from './Question';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, Button, Media } from 'reactstrap';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Switch } from 'react-router-dom';
 
 function Home(props) {
     const [currentQuestions, changePage] = useState('answered')
@@ -19,11 +19,19 @@ function Home(props) {
             authedUser: state.authedUser
         }
     }, shallowEqual)
+
     
-    if (authedUser !== undefined && users !== undefined && authedUser !== null){
+    if (authedUser !== null){
         const questionIds = Object.keys(questions)
+    
+        const allAnsQues = questionIds.filter(qid => Object.keys(users[authedUser].answers).includes(qid))
+                            .map(id => questions[id]);
+
+        const allUnansQues = questionIds.filter(qid => Object.keys(users[authedUser].answers).indexOf(qid) === -1)
+                            .map((id) => questions[id]);
+
         return(
-            <div>
+            <React.Fragment>
             <Row className='mt-2'>
                     <Col md={{size: 6, offset: 3}}>
                         <Button color="primary" disabled={currentQuestions !== 'unanswered'} block
@@ -40,18 +48,17 @@ function Home(props) {
                 <Col md={{size: 6, offset: 3}}>
                     {currentQuestions === 'answered' 
                     ? <Media list>
-                        {questionIds.filter(id => Object.keys(users[authedUser].answers).includes(id))
-                    .map(id => <Question key={id} status='answered' change={props.change} ques={questions[id]}/>)}
+                        
+                    <Question status='answered' allQues={allAnsQues}/>
                     </Media>
                     : <Media list>
-                        {questionIds.filter(id => Object.keys(users[authedUser].answers).indexOf(id) === -1)
-                    .map((id) => <Question key={id} status='unanswered' change={props.change} ques={questions[id]} />)
-                    }
+                        <Question status='unanswered' allQues={allUnansQues} />
+                    
                     </Media>
                     }
                 </Col>
             </Row>
-            </div>
+            </React.Fragment>
         );
     }
     else{

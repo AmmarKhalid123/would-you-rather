@@ -1,5 +1,5 @@
 import * as ActionTypes from './ActionTypes'
-import {_getUsers, _getQuestions, _saveQuestion } from '../_DATA'
+import {_getUsers, _getQuestions, _saveQuestion, _saveQuestionAnswer } from '../_DATA'
 
 export const getUsers = () => (dispatch) => {
     return _getUsers().then(res => dispatch(addUsers(res)))    
@@ -38,5 +38,16 @@ const addQuestion = (res) => {
     return {
         type: ActionTypes.POST_QUESTION,
         payload: {[res.id]: res}
+    }
+}
+
+export const saveQueAns = ({authedUser, qid, answer}) => (dispatch) => {
+    return _saveQuestionAnswer({authedUser, qid, answer}).then(dispatch(addAnsQues({authedUser, qid, answer})))
+}
+
+const addAnsQues = ({authedUser, qid, answer}) => {
+    return {
+        type: ActionTypes.SAVE_QUESTION_ANSWER,
+        payload: {authedUser, qid, answer}
     }
 }

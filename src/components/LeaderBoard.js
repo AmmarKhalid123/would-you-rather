@@ -2,11 +2,12 @@ import React from 'react';
 import { useSelector }  from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, Media, Button } from 'reactstrap';
+import { Redirect } from 'react-router-dom';
 
 function RenderLeader (props) {
     const { users, questions } = useSelector((state) => ({
         users: state.users,
-        questions: state.questions
+        questions: state.questions,
     }))
 
     const questionsAsked = (quesIds, uid) => {
@@ -81,13 +82,20 @@ function RenderLeader (props) {
 
 
 export default function LeaderBoard (props) {
-    const { users, questions } = useSelector((state) => ({
-        users: state.users,
-        questions: state.questions
+    const { authedUser } = useSelector((state) => ({
+        authedUser: state.authedUser
     }))
-    return (
-        <Media list>
-            <RenderLeader />
-        </Media>
-    );
+    if (authedUser !== null){
+        return (
+            <Media list>
+                <RenderLeader />
+            </Media>
+        );
+    }
+    else {
+        return(
+            <Redirect to='/' />
+        )
+    }
+    
 }
