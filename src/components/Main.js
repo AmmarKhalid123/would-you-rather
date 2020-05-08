@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getUsers, getQuestions} from '../redux/ActionCreators'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,7 +22,7 @@ function Main (){
     useEffect(() => {
         dispatch(getUsers())
         dispatch(getQuestions())
-    }, [])
+    }, [dispatch])
     
     return (      
         <React.Fragment>

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useSelector, shallowEqual } from 'react-redux';
 import {useLastLocation} from 'react-router-last-location';
 import Question from './Question';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, Button, Media } from 'reactstrap';
-import { Redirect, Switch } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
-function Home({location, history}) {
+function Home() {
     
     const {users, questions, authedUser} = useSelector( (state) => {    
         return {

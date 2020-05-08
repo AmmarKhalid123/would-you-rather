@@ -1,10 +1,8 @@
-import React, {useState} from "react";
-import { useSelector, useDispatch }  from 'react-redux';
-import {addReqUrl} from '../redux/ActionCreators';
+import React from "react";
+import { useSelector }  from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Media, Button} from 'reactstrap';
-import { Link, Route, Switch } from 'react-router-dom';
-import ViewPoll from './ViewPoll';
+import { Link } from 'react-router-dom';
 
 function Question (props) {
     const users = useSelector(state => state.users)

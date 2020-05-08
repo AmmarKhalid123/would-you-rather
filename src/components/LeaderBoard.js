@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch }  from 'react-redux';
 import {addReqUrl} from '../redux/ActionCreators';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Row, Col, Media, Button } from 'reactstrap';
+import { Row, Col, Media } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 
 function RenderLeader (props) {
@@ -92,9 +92,8 @@ function RenderLeader (props) {
 
 
 export default function LeaderBoard (props) {
-    const { authedUser, reqUrl } = useSelector((state) => ({
-        authedUser: state.authedUser,
-        reqUrl: state.reqUrl
+    const { authedUser } = useSelector((state) => ({
+        authedUser: state.authedUser
     }))
     const dispatch = useDispatch()
     if (authedUser !== null){

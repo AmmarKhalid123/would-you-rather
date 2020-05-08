@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addReqUrl } from '../redux/ActionCreators';
-import {Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Button} from 'reactstrap'
+import {Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem } from 'reactstrap'
 import { setAuthedUser } from '../redux/ActionCreators';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -63,7 +63,7 @@ export default function Header (props) {
                         <Nav navbar className="ml-auto">
                         <NavItem>
                             <img src={users[authedUser].avatarURL} height='50'
-                            width='50' style={{borderRadius: '30px'}} />
+                            width='50' alt={users[authedUser].name} style={{borderRadius: '30px'}} />
                         </NavItem>
                         <NavItem>
                         <h5 className='mt-2 ml-1 text-white'>Hey, {users[authedUser].name}</h5>
