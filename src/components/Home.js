@@ -6,7 +6,7 @@ import { Row, Col, Button, Media } from 'reactstrap';
 import { Redirect, Switch } from 'react-router-dom';
 
 function Home(props) {
-    const [currentQuestions, changePage] = useState('answered')
+    const [currentQuestions, changePage] = useState('unanswered')
     useEffect(() => {
     })
     const handleClick = (a) => {

@@ -1,5 +1,6 @@
 import React, {useState} from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch }  from 'react-redux';
+import {addReqUrl} from '../redux/ActionCreators';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Media, Button} from 'reactstrap';
 import { Link, Route, Switch } from 'react-router-dom';
@@ -7,17 +8,12 @@ import ViewPoll from './ViewPoll';
 
 function Question (props) {
     const users = useSelector(state => state.users)
-
-    const [quesId, changeQid] = useState('')
-
-    const handleChange = (a) => {
-        changeQid(a)
-    }
     
-    
+    const orderedQues = props.allQues.sort((a, b) => b.timestamp - a.timestamp)
+
     return (
         <div>    
-        {props.allQues.map((ques) =>
+        {orderedQues.map((ques) =>
             <Media tag='li' height='100' style={{
                 margin: 10,
                 maxWidth: 500
@@ -30,7 +26,7 @@ function Question (props) {
             </Media>
             <Media body className='ml-2'>
                 <Media heading>
-                {ques.author} asks would you rather
+                {users[ques.author].name} asks would you rather
                 </Media>
 
                 {ques.optionOne.text}
@@ -38,7 +34,7 @@ function Question (props) {
                 {ques.optionTwo.text}
                 <br />
                 
-                <Link to={`/questions/${ques.id}`} onClick={() => changeQid(ques.id)} >
+                <Link to={`/questions/${ques.id}`} >
                     <Button>View Poll</Button>
                 </Link>
             </Media>

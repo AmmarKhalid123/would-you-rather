@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {addReqUrl} from '../redux/ActionCreators';
 import {Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import {Redirect} from 'react-router-dom';
 import { shallowEqual } from '@babel/types';
@@ -47,6 +48,7 @@ export default function NewQuestion (props) {
         )
     }
     else {
+        dispatch(addReqUrl('/add'))
         return(
             <Redirect to='/questions' />
         )

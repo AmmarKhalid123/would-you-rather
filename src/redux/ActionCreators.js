@@ -51,3 +51,8 @@ const addAnsQues = ({authedUser, qid, answer}) => {
         payload: {authedUser, qid, answer}
     }
 }
+
+export const addReqUrl = (url) => ({
+    type: ActionTypes.SET_URL,
+    payload: url
+})

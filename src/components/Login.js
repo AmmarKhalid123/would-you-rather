@@ -20,9 +20,9 @@ function UsersDropdown(props) {
 }
 
 
-function Login (props) {
-    const {authedUser, users} = useSelector(state => ({
-        authedUser: state.authedUser,
+function Login ({history, location, match}) {
+    const {reqUrl, users} = useSelector(state => ({
+        reqUrl: state.reqUrl,
         users: state.users
     }), shallowEqual)
     
@@ -39,13 +39,18 @@ function Login (props) {
         dispatch(setAuthedUser(user))
         setAuth(null)
     }
+
     const toggle = () => setDropdownOpen(prevState => !prevState);
+
     return(
-        <Row>
-            <Form>
+        <Row >
+            <Col className='text-center' md={{size: 6, offset: 3}}
+                style={{backgroundColor: '#34c9eb', marginTop: 30, }}
+            >
+            <Form className='mt-10'>
                 <FormGroup>
-                    <Label>
-                        Choose Your Id
+                    <Label className='h4 mb-3'>
+                        Choose Your Id to Login
                     </Label>
                     
                     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
@@ -57,14 +62,15 @@ function Login (props) {
                     </DropdownMenu>
                     </Dropdown>
                     
-                    <Link to='/questions'>
-                    <Button onClick={goHome} disabled={user === null} >
+                    <Link to={reqUrl} >
+                    <Button className='mt-3' onClick={goHome} disabled={user === null} >
                         <span>Login</span>
                     </Button>
                     </Link>
                 </FormGroup>
             </Form>
            
+            </Col>
         </Row>
 
     );

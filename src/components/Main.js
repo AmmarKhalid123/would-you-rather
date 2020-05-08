@@ -13,8 +13,6 @@ import ViewPoll from './ViewPoll';
 
 
 function Main (){
-    // const [pollOrAns, changePage] = useState('')
-    // const [ques, changeQid] = useState('')
     
     const dispatch = useDispatch()
     const {authedUser} = useSelector((state) => ({
@@ -29,16 +27,15 @@ function Main (){
     return (      
         <React.Fragment>
             <Header id={authedUser} />
-        <Container > 
-            <Switch>
-                <Route exact path='/' component={Login} />
-                <Route exact path='/add' component={NewQuestion} />
-                <Route exact path='/questions' component={Home} />
-                <Route exact path='/leaderboard' component={LeaderBoard} />
-                <Route path='/questions/:qid' component={ViewPoll}/>
-            </Switch>
-          
-        </Container>
+            <Container > 
+                <Switch>
+                    <Route exact path='/' component={Login} />
+                    <Route exact path='/add' component={NewQuestion} />
+                    <Route exact path='/questions' component={Home} />
+                    <Route exact path='/leaderboard' component={LeaderBoard} />
+                    <Route path='/questions/:qid' component={ViewPoll}/>
+                </Switch>
+            </Container>
         </React.Fragment>  
         
         );

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import {useDispatch} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addReqUrl } from '../redux/ActionCreators';
 import {Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Button} from 'reactstrap'
 import { setAuthedUser } from '../redux/ActionCreators';
 import { NavLink } from 'react-router-dom';
@@ -9,6 +10,8 @@ import { faPlus, faHome, faTrophy, faSignInAlt } from '@fortawesome/free-solid-s
 
 export default function Header (props) {
     const [isNavOpen, toggleNavBar] = useState(false)
+    
+    const {users, authedUser} = useSelector(state => ({users: state.users, authedUser : state.authedUser}))
 
     const toggleNav = () => {
         toggleNavBar(!isNavOpen)
@@ -20,6 +23,16 @@ export default function Header (props) {
         dispatch(setAuthedUser(null))
     }
     
+    const auth = (req) => {
+        if (authedUser !== null) {
+            return req
+        }
+        else{
+            dispatch(addReqUrl(req))
+            return '/'
+        }    
+    }
+
     return(
         <Navbar color='primary' dark expand="md">
                 <div className="container">
@@ -32,23 +45,30 @@ export default function Header (props) {
                     <Collapse isOpen={isNavOpen} navbar>
                     <Nav navbar className='ml-4'>
                         <NavItem>
-                            <NavLink className="nav-link" to={props.id !== null ? '/questions' : '/'}>
+                            <NavLink className="nav-link" to={authedUser !== null ? '/questions' : '/'}>
                             <FontAwesomeIcon icon={faHome}></FontAwesomeIcon> Home
                             </NavLink> 
                         </NavItem>
                         <NavItem>
-                            <NavLink className="nav-link" to={props.id !== null ? '/add' : '/'}>
+                            <NavLink className="nav-link" to={authedUser !== null ? '/add' : '/'}>
                                 <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon> New Question
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink className="nav-link" to={props.id !== null ? '/leaderboard' : '/'}>
+                            <NavLink className="nav-link" to={authedUser !== null ? '/leaderboard' : '/'}>
                             <FontAwesomeIcon icon={faTrophy}></FontAwesomeIcon> LeaderBoard
                             </NavLink> 
                         </NavItem>
                     </Nav>
-                    {props.id !== null && (
+                    {authedUser !== null && (
                         <Nav navbar className="ml-auto">
+                        <NavItem>
+                            <img src={users[authedUser].avatarURL} height='50'
+                            width='50' style={{borderRadius: '30px'}} />
+                        </NavItem>
+                        <NavItem>
+                        <h5 className='mt-2 ml-1'>Hey, {users[authedUser].name}</h5>
+                        </NavItem>
                         <NavItem>
                             <NavLink className='nav-link' onClick={handleLogout} to='/'>
                                 <FontAwesomeIcon icon={faSignInAlt}></FontAwesomeIcon> Logout                            

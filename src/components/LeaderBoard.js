@@ -1,5 +1,6 @@
 import React from 'react';
-import { useSelector }  from 'react-redux';
+import { useSelector, useDispatch }  from 'react-redux';
+import {addReqUrl} from '../redux/ActionCreators';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, Media, Button } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
@@ -51,8 +52,10 @@ function RenderLeader (props) {
         }).sort(compare);
 
         return (
-            scores.map(({uid, score}) => (
-                <Media tag='li' height='100' style={{
+            <Row>
+                {scores.map(({uid, score}) => (
+                <Col md={{size: 6, offset: 3}}>
+                    <Media tag='li' height='100' style={{
                     margin: 10,
                     maxWidth: 500
                 }}>
@@ -71,10 +74,14 @@ function RenderLeader (props) {
                         <h5>Total Score: {score}</h5>
                     </Media>
                 </Media>
+                
+                </Col>
+                    )
                 )
-            )
-        )
-    }
+                }
+            </Row>
+            
+    )}
     else {
         return <div></div>
     }
@@ -82,9 +89,11 @@ function RenderLeader (props) {
 
 
 export default function LeaderBoard (props) {
-    const { authedUser } = useSelector((state) => ({
-        authedUser: state.authedUser
+    const { authedUser, reqUrl } = useSelector((state) => ({
+        authedUser: state.authedUser,
+        reqUrl: state.reqUrl
     }))
+    const dispatch = useDispatch()
     if (authedUser !== null){
         return (
             <Media list>
@@ -93,6 +102,7 @@ export default function LeaderBoard (props) {
         );
     }
     else {
+        dispatch(addReqUrl('/leaderboard'))
         return(
             <Redirect to='/' />
         )
