@@ -79,7 +79,7 @@ function Login ({history, location, match}) {
     }
     else{
         return (
-            <Redirect to='/questions' />
+            <Redirect to='/' />
         )
     }
     

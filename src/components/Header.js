@@ -41,8 +41,8 @@ export default function Header (props) {
                     <Collapse isOpen={isNavOpen} navbar>
                     <Nav navbar className='ml-4'>
                         <NavItem>
-                            <NavLink className="nav-link" to={authedUser !== null ? '/questions' : '/'}
-                            onClick={() => auth('/questions')} >
+                            <NavLink className="nav-link" to='/'
+                            onClick={() => auth('/')} >
                             <FontAwesomeIcon icon={faHome}></FontAwesomeIcon> Home
                             </NavLink> 
                         </NavItem>

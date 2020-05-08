@@ -29,9 +29,9 @@ function Main (){
             <Header id={authedUser} />
             <Container > 
                 <Switch>
-                    <Route exact path='/' component={Login} />
+                    <Route exact path='/' component={Home} />
                     <Route exact path='/add' component={NewQuestion} />
-                    <Route exact path='/questions' component={Home} />
+                    <Route exact path='/login' component={Login} />
                     <Route exact path='/leaderboard' component={LeaderBoard} />
                     <Route path='/questions/:qid' component={ViewPoll}/>
                 </Switch>

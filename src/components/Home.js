@@ -78,7 +78,7 @@ function Home() {
     }
     else{
         return (
-            <Redirect to='/' />
+            <Redirect to='/login' />
         )
     }
 }
