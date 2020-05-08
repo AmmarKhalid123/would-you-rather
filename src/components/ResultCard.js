@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardTitle, CardText, Progress, Badge } from 'reactstrap'
 
+//rendering the result of answered questions
 export default function ResultCard ({opt, votes, outOf, urAns}) {
     const percent = votes/outOf
     return(

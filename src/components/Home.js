@@ -6,8 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, Button, Media } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 
+//rendering the root page, of answered and unanswered questions
 function Home() {
-    
+    //getting the state from store
     const {users, questions, authedUser} = useSelector( (state) => {    
         return {
             users: state.users,
@@ -19,9 +20,7 @@ function Home() {
     const lastLocation = useLastLocation()
     let loc = 'unanswered';
     if (lastLocation !== null){
-
         const path = lastLocation.pathname.split('/');
-
         if (path.length === 3) {
             const quesId = path[2];
             if (questions[quesId].optionOne.votes.includes(authedUser) || questions[quesId].optionTwo.votes.includes(authedUser)){
@@ -29,6 +28,7 @@ function Home() {
             }
         }
     }
+    //state containing which page to be shown
     const [currentQuestions, changePage] = useState(loc)
 
     
@@ -62,14 +62,14 @@ function Home() {
             <Row>
                 <Col md={{size: 6, offset: 3}}>
                     {currentQuestions === 'answered' 
-                    ? <Media list>
-                        
-                    <Question status='answered' allQues={allAnsQues}/>
-                    </Media>
-                    : <Media list>
-                        <Question status='unanswered' allQues={allUnansQues} />
-                    
-                    </Media>
+                    ? 
+                        <Media list>
+                            <Question status='answered' allQues={allAnsQues}/>
+                        </Media>
+                    : 
+                        <Media list>
+                            <Question status='unanswered' allQues={allUnansQues} />
+                        </Media>
                     }
                 </Col>
             </Row>

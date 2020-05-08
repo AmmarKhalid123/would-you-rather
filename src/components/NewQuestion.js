@@ -3,16 +3,19 @@ import {useDispatch, useSelector} from 'react-redux';
 import {addReqUrl} from '../redux/ActionCreators';
 import {Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import {Redirect} from 'react-router-dom';
-import { shallowEqual } from '@babel/types';
 import { postQuestion } from '../redux/ActionCreators';
 
 
-export default function NewQuestion (props) {
+export default function NewQuestion () {
+    
+    //handling the onSubmit
     const [goHome, changePage] = useState(false)
+    
+    //containing the new question information
     const [optionOne, changeOne] = useState('')
     const [optionTwo, changeTwo] = useState('')
 
-    const authedUser = useSelector((state) => state.authedUser, shallowEqual);
+    const authedUser = useSelector((state) => state.authedUser);
 
     const dispatch = useDispatch()
 
@@ -23,7 +26,6 @@ export default function NewQuestion (props) {
     }
 
     if (authedUser !== null && !goHome) {
-        console.log('in Newques =>',authedUser)
         return(
             <Form onSubmit={handleSubmit}>
                     <h4>Create Your Question</h4>

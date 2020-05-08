@@ -7,6 +7,7 @@ import ResultCard from './ResultCard';
 import AnsQuestion from './AnsQuestion';
 import { addReqUrl } from '../redux/ActionCreators';
 
+//rendering the detailed view for answered as well as unanswered questions
 export default function ViewPoll (props) {
     const { users, authedUser, questions } = useSelector((state) => ({
         users: state.users,

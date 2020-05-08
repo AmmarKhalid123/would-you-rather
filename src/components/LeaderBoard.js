@@ -5,6 +5,29 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, Media } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 
+//rendering the leaderboard
+export default function LeaderBoard () {
+
+    const authedUser = useSelector((state) => state.authedUser)
+    
+    const dispatch = useDispatch()
+    
+    if (authedUser !== null){
+        return (
+            <Media list>
+                <RenderLeader />
+            </Media>
+        );
+    }
+    else {
+        dispatch(addReqUrl('/leaderboard'))
+        return(
+            <Redirect to='/' />
+        )
+    }   
+}
+
+
 function RenderLeader (props) {
     const { users, questions } = useSelector((state) => ({
         users: state.users,
@@ -88,26 +111,4 @@ function RenderLeader (props) {
     else {
         return <div></div>
     }
-}
-
-
-export default function LeaderBoard (props) {
-    const { authedUser } = useSelector((state) => ({
-        authedUser: state.authedUser
-    }))
-    const dispatch = useDispatch()
-    if (authedUser !== null){
-        return (
-            <Media list>
-                <RenderLeader />
-            </Media>
-        );
-    }
-    else {
-        dispatch(addReqUrl('/leaderboard'))
-        return(
-            <Redirect to='/' />
-        )
-    }
-    
 }

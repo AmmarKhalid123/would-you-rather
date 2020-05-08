@@ -7,8 +7,8 @@ import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faHome, faTrophy, faSignInAlt } from '@fortawesome/free-solid-svg-icons'
 
-
-export default function Header (props) {
+//Nav bar
+export default function Header () {
     const [isNavOpen, toggleNavBar] = useState(false)
     
     const {users, authedUser} = useSelector(state => ({users: state.users, authedUser : state.authedUser}))
@@ -34,8 +34,6 @@ export default function Header (props) {
                 <div className="container">
                     <NavbarToggler onClick={toggleNav}/>
                     <NavbarBrand className="mr-auto" >
-                        {/* <img src="./logo.png" height="30" width="41"
-                        alt="Would you rather"/>  */}
                     Would You Rather
                     </NavbarBrand> 
                     <Collapse isOpen={isNavOpen} navbar>
@@ -59,6 +57,7 @@ export default function Header (props) {
                             </NavLink> 
                         </NavItem>
                     </Nav>
+                    {/* To be shown if someone is logged in */}
                     {authedUser !== null && (
                         <Nav navbar className="ml-auto">
                         <NavItem>

@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Media, Button} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
+//rendering the list of questions recieved as props
+
 function Question (props) {
     const users = useSelector(state => state.users)
     

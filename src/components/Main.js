@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import {getUsers, getQuestions} from '../redux/ActionCreators'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'reactstrap';
@@ -15,18 +15,16 @@ import ViewPoll from './ViewPoll';
 function Main (){
     
     const dispatch = useDispatch()
-    const {authedUser} = useSelector((state) => ({
-        authedUser: state.authedUser
-    }))
 
     useEffect(() => {
         dispatch(getUsers())
         dispatch(getQuestions())
     }, [dispatch])
+
     
     return (      
         <React.Fragment>
-            <Header id={authedUser} />
+            <Header />
             <Container > 
                 <Switch>
                     <Route exact path='/' component={Home} />

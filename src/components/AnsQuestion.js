@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { saveQueAns } from '../redux/ActionCreators'
 import { Redirect } from 'react-router-dom';
 
+
+//A form to answer an unanswered question
 export default function AnsQuestion(props) {
-    const [radioVal, changeRadVal] = useState('')
+    const [radioVal, changeRadVal] = useState('') //state containing the form value
     const authedUser = useSelector(state => state.authedUser)
     const dispatch = useDispatch()
     

@@ -20,7 +20,7 @@ function UsersDropdown(props) {
 }
 
 
-function Login ({history, location, match}) {
+function Login () {
     const {reqUrl, users, authedUser} = useSelector(state => ({
         reqUrl: state.reqUrl,
         users: state.users,
@@ -30,12 +30,13 @@ function Login ({history, location, match}) {
     const dispatch = useDispatch()
     
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [user, changeUser] = useState(null); 
+    const [user, changeUser] = useState(null); //containing which user is selected on login page
 
 
     const setAuth = (uid) => {
         changeUser(uid)
     }
+    //upon login
     const goHome = () => {
         dispatch(setAuthedUser(user))
         setAuth(null)
