@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Media} from 'reactstrap';
+import {Media, Row, Col} from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 import ResultCard from './ResultCard';
 import AnsQuestion from './AnsQuestion';
@@ -43,14 +43,18 @@ export default function ViewPoll (props) {
             const optionOneVotes = questions[quesId].optionOne.votes.length;
             const optionTwoVotes = questions[quesId].optionTwo.votes.length;
             return(
-            <Media height='100' style={{
+                <Row>
+                    <Col md={{size: 6, offset: 3}}>
+                    <Media height='100' className='badge-light' style={{
                 margin: 10,
-                maxWidth: 500
+                minWidth: 500
             }}>
-                <Media left middle>
+                <Media left middle style={{borderRadius: '40px'}} >
                     <Media object src={users[questions[quesId].author].avatarURL} alt={questions[quesId].author}
-                    style={{maxHeight: 150,
-                            maxWidth: 150
+                    style={{maxHeight: 130,
+                            maxWidth: 130,
+                            borderRadius: '70px',
+                            margin: '10px' 
                     }} />
                 </Media>
                 {view === 'answered' ?
@@ -58,14 +62,14 @@ export default function ViewPoll (props) {
                     <Media heading>
                     {questions[quesId].author} asked
                     </Media>
-                    <ResultCard opt={questions[quesId].optionOne.text} 
+                    <ResultCard className='mr-2 ml-2' opt={questions[quesId].optionOne.text} 
                     votes={optionOneVotes} 
                     outOf={totalV} 
                     urAns={userVotedFor(authedUser, questions[quesId], 'optionOne')} />
                     
                     <br/>
                     
-                    <ResultCard opt={questions[quesId].optionTwo.text} 
+                    <ResultCard className='mr-2 ml-2' opt={questions[quesId].optionTwo.text} 
                     votes={optionTwoVotes} 
                     outOf={totalV}
                     urAns={userVotedFor(authedUser, questions[quesId], 'optionTwo')} />
@@ -82,6 +86,9 @@ export default function ViewPoll (props) {
                 </Media>}
             </Media>
         
+                    </Col>
+                </Row>
+            
         );
         }
         else {

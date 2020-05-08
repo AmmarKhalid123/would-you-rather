@@ -54,20 +54,23 @@ function RenderLeader (props) {
         return (
             <Row>
                 {scores.map(({uid, score}) => (
-                <Col md={{size: 6, offset: 3}}>
-                    <Media tag='li' height='100' style={{
+                <Col md={{size: 6, offset: 3}} key={uid}>
+                    <Media tag='li' height='100' className='badge-light' style={{
                     margin: 10,
-                    maxWidth: 500
+                    maxWidth: 500,
+                    borderRadius: '20px'
                 }}>
                     <Media left middle>
                         <Media object src={users[uid].avatarURL} alt={users[uid]}
-                        style={{maxHeight: 150,
-                                maxWidth: 150
+                        style={{maxHeight: 130,
+                            maxWidth: 130,
+                            borderRadius: '70px',
+                            margin: '10px'
                         }} />
                     </Media>
                     <Media body className='ml-2'>
                         <Media heading>
-                            {uid}
+                            {users[uid].name}
                         </Media>
                         <p>Questions Asked: {questionsAsked(quesIds, uid)}</p>
                         <p>Questions Answered: {questionsAnswered(quesIds, uid)}</p>

@@ -1,8 +1,10 @@
 import * as ActionTypes from './ActionTypes'
 import {_getUsers, _getQuestions, _saveQuestion, _saveQuestionAnswer } from '../_DATA'
+import { showLoading, hideLoading} from 'react-redux-loading'
 
 export const getUsers = () => (dispatch) => {
-    return _getUsers().then(res => dispatch(addUsers(res)))    
+    dispatch(showLoading())
+    return _getUsers().then(res => dispatch(addUsers(res))).then(dispatch(hideLoading()))    
 }
 
 function addUsers (users) {
@@ -13,7 +15,8 @@ function addUsers (users) {
 }
 
 export const getQuestions = () => (dispatch) => {
-    return _getQuestions().then(res => dispatch(addQuestions(res)))    
+    dispatch(showLoading())
+    return _getQuestions().then(res => dispatch(addQuestions(res))).then(dispatch(hideLoading()))
 }
 
 function addQuestions (questions) {
@@ -31,7 +34,8 @@ export const setAuthedUser = (uid) => {
 }
 
 export const postQuestion = ({optionOneText, optionTwoText, author }) => (dispatch) => {
-    return  _saveQuestion({optionOneText, optionTwoText, author }).then(res => dispatch(addQuestion(res)))
+    dispatch(showLoading())
+    return  _saveQuestion({optionOneText, optionTwoText, author }).then(res => dispatch(addQuestion(res))).then(dispatch(hideLoading()))
 }
 
 const addQuestion = (res) => {

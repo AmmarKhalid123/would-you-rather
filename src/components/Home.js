@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, shallowEqual } from 'react-redux';
+import {useLastLocation} from 'react-router-last-location';
 import Question from './Question';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col, Button, Media } from 'reactstrap';
 import { Redirect, Switch } from 'react-router-dom';
 
-function Home(props) {
-    const [currentQuestions, changePage] = useState('unanswered')
-    useEffect(() => {
-    })
-    const handleClick = (a) => {
-        changePage(a)
-    }
+function Home({location, history}) {
+    
     const {users, questions, authedUser} = useSelector( (state) => {    
         return {
             users: state.users,
@@ -19,8 +15,27 @@ function Home(props) {
             authedUser: state.authedUser
         }
     }, shallowEqual)
+    
+    const lastLocation = useLastLocation()
+    let loc = 'unanswered';
+    if (lastLocation !== null){
+
+        const path = lastLocation.pathname.split('/');
+
+        if (path.length === 3) {
+            const quesId = path[2];
+            if (questions[quesId].optionOne.votes.includes(authedUser) || questions[quesId].optionTwo.votes.includes(authedUser)){
+                loc = 'answered'
+            }
+        }
+    }
+    const [currentQuestions, changePage] = useState(loc)
 
     
+    const handleClick = (a) => {
+        changePage(a)
+    }
+
     if (authedUser !== null){
         const questionIds = Object.keys(questions)
     

@@ -5,13 +5,15 @@ import {AuthedUser} from './reducers/authedUser'
 import {ReqUrl} from './reducers/reqUrl'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
+import { loadingBarReducer } from 'react-redux-loading'
 
 export const ConfigureStore = () => {
     const store = createStore(combineReducers({
         users: Users,
         questions: Questions,
         authedUser: AuthedUser,
-        reqUrl: ReqUrl
+        reqUrl: ReqUrl,
+        loadingBar: loadingBarReducer
     }), applyMiddleware(thunk, logger))
     return store
 }

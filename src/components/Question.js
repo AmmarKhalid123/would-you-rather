@@ -14,14 +14,17 @@ function Question (props) {
     return (
         <div>    
         {orderedQues.map((ques) =>
-            <Media tag='li' height='100' style={{
+            <Media tag='li' key={ques.id} height='100' className='badge-light' style={{
                 margin: 10,
-                maxWidth: 500
+                maxWidth: 500,
+                borderRadius: '20px'
             }}>
                <Media left middle>
-                <Media object src={users[ques.author].avatarURL} alt={ques.author}
-                style={{maxHeight: 150,
-                        maxWidth: 150
+                <Media  object src={users[ques.author].avatarURL} alt={ques.author}
+                style={{maxHeight: 130,
+                        maxWidth: 130,
+                        borderRadius: '70px',
+                        margin: '10px'
                 }} />
             </Media>
             <Media body className='ml-2'>

@@ -29,7 +29,7 @@ export default function NewQuestion (props) {
                     <h4>Create Your Question</h4>
                 <FormGroup>
                     <Label htmlFor='optionOne'>Would You Rather</Label>
-                    <Col>
+                    <Col md={5}>
                         <Input type='text' id='optionOne' name='optionOne'
                                 onChange={(event) => changeOne(event.target.value)}
                                 placeholder='Enter first Option' />
@@ -37,7 +37,7 @@ export default function NewQuestion (props) {
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor='optionTwo'>Or</Label>
-                    <Col  md={10}>
+                    <Col  md={5}>
                         <Input type='text' id='optionTwo' name='optionTwo'
                                 onChange={(event) => changeTwo(event.target.value)}
                                 placeholder='Enter Second Option' />

@@ -24,13 +24,9 @@ export default function Header (props) {
     }
     
     const auth = (req) => {
-        if (authedUser !== null) {
-            return req
-        }
-        else{
+        if (authedUser === null) {
             dispatch(addReqUrl(req))
-            return '/'
-        }    
+        }
     }
 
     return(
@@ -45,17 +41,20 @@ export default function Header (props) {
                     <Collapse isOpen={isNavOpen} navbar>
                     <Nav navbar className='ml-4'>
                         <NavItem>
-                            <NavLink className="nav-link" to={authedUser !== null ? '/questions' : '/'}>
+                            <NavLink className="nav-link" to={authedUser !== null ? '/questions' : '/'}
+                            onClick={() => auth('/questions')} >
                             <FontAwesomeIcon icon={faHome}></FontAwesomeIcon> Home
                             </NavLink> 
                         </NavItem>
                         <NavItem>
-                            <NavLink className="nav-link" to={authedUser !== null ? '/add' : '/'}>
+                            <NavLink className="nav-link" to={authedUser !== null ? '/add' : '/'}
+                            onClick={() => auth('/add')} >
                                 <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon> New Question
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink className="nav-link" to={authedUser !== null ? '/leaderboard' : '/'}>
+                            <NavLink className="nav-link" to={authedUser !== null ? '/leaderboard' : '/'}
+                            onClick={() => auth('/leaderboard')} >
                             <FontAwesomeIcon icon={faTrophy}></FontAwesomeIcon> LeaderBoard
                             </NavLink> 
                         </NavItem>
@@ -67,7 +66,7 @@ export default function Header (props) {
                             width='50' style={{borderRadius: '30px'}} />
                         </NavItem>
                         <NavItem>
-                        <h5 className='mt-2 ml-1'>Hey, {users[authedUser].name}</h5>
+                        <h5 className='mt-2 ml-1 text-white'>Hey, {users[authedUser].name}</h5>
                         </NavItem>
                         <NavItem>
                             <NavLink className='nav-link' onClick={handleLogout} to='/'>
