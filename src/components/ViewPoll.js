@@ -37,7 +37,7 @@ export default function ViewPoll (props) {
 
     if (authedUser !== null) {
         if (Object.keys(questions).includes(quesId)){
-        
+            console.log('aksndka')
             const view = Object.keys(users[authedUser].answers).includes(quesId) ? 'answered' : 'unanswered'
             
             const totalV = totalVotes(questions[quesId]);
@@ -94,9 +94,7 @@ export default function ViewPoll (props) {
         }
         else {
             return(
-                <h4>
-                    Error 404: Page not found
-                </h4>
+                <Redirect to='/404page' />
             )    
         }
     }

@@ -52,7 +52,7 @@ export default function NewQuestion () {
     else {
         dispatch(addReqUrl('/add'))
         return(
-            <Redirect to='/questions' />
+            <Redirect to='/' />
         )
     }
     

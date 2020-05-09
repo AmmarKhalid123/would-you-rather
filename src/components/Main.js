@@ -10,7 +10,8 @@ import Header from './Header';
 import NewQuestion from './NewQuestion';
 import LeaderBoard from './LeaderBoard';
 import ViewPoll from './ViewPoll';
-
+import ErrorPage from './ErrorPage';
+import DoesNotExist from './DoesNotExist';
 
 function Main (){
     
@@ -32,6 +33,8 @@ function Main (){
                     <Route exact path='/login' component={Login} />
                     <Route exact path='/leaderboard' component={LeaderBoard} />
                     <Route path='/questions/:qid' component={ViewPoll}/>
+                    <Route path='/404page' component={DoesNotExist} />
+                    <Route path='/:error' component={ErrorPage} />
                 </Switch>
             </Container>
         </React.Fragment>  

@@ -21,7 +21,7 @@ function Home() {
     let loc = 'unanswered';
     if (lastLocation !== null){
         const path = lastLocation.pathname.split('/');
-        if (path.length === 3) {
+        if (path.length === 3 && Object.keys(questions).includes(path[2])) {
             const quesId = path[2];
             if (questions[quesId].optionOne.votes.includes(authedUser) || questions[quesId].optionTwo.votes.includes(authedUser)){
                 loc = 'answered'
