@@ -1,5 +1,5 @@
 import * as ActionTypes from './ActionTypes'
-import {_getUsers, _getQuestions, _saveQuestion, _saveQuestionAnswer } from '../_DATA'
+import {_getUsers, _getQuestions, _saveQuestion, _saveQuestionAnswer, addUser } from '../_DATA'
 import { showLoading, hideLoading} from 'react-redux-loading'
 
 export const getUsers = () => (dispatch) => {
@@ -60,3 +60,12 @@ export const addReqUrl = (url) => ({
     type: ActionTypes.SET_URL,
     payload: url
 })
+
+const addAuthedUser = (user) => ({
+    type: ActionTypes.ADD_USER,
+    payload: user
+})
+
+export const saveAuthedUser = (user) => (dispatch) => {
+    return addUser(user).then(dispatch(addAuthedUser(user)))
+}

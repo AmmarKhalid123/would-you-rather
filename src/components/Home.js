@@ -38,13 +38,15 @@ function Home() {
 
     if (authedUser !== null){
         const questionIds = Object.keys(questions)
-    
-        const allAnsQues = questionIds.filter(qid => Object.keys(users[authedUser].answers).includes(qid))
+        console.log(users[authedUser]);
+
+        const allAnsQues = questionIds.filter(qid => (Object.keys(users[authedUser].answers)).includes(qid))
                             .map(id => questions[id]);
 
         const allUnansQues = questionIds.filter(qid => Object.keys(users[authedUser].answers).indexOf(qid) === -1)
                             .map((id) => questions[id]);
-
+    
+        
         return(
             <React.Fragment>
             <Row className='mt-2'>

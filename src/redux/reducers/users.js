@@ -31,6 +31,12 @@ export function Users (state = {}, action) {
                     }
                 }  
             }
+        case ActionTypes.ADD_USER:
+            const userId = (Object.keys(action.payload))[0];
+            return {
+                ...state,
+                [userId]: action.payload[userId]
+            }
         default: 
             return state
     }
