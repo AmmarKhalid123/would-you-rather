@@ -1,18 +1,24 @@
-#Would You Rather
+## About
+This is a final project by Udacity from React Native Project - React Nanodegree Program
 
-###TL:DR;
+### TL:DR;
+Visit https://would-you-rather-456.web.app/login to view the application.
 
-Just clone the repo and type these commands to run
-- npm install
-- npm start
+# Would You Rather
+This web application is an instantiation of would you rather game. Just a quick review, here's how it works: There are many players, each player can add a new question, answer the questions posted by other players and view the number of percentages of the each answer of answered questions. Player can also view leaderboard, where players are ranked in order. Score of a player is calculated by summing up the number of questions asked by the player and numbers of questions answered by the player.
 
-##About
-This is a final project of "Real World Redux" course from React Nanodegree Program by Udacity.
+The application also provides secure environment by not letting the user to view the any of the pages unless user has login. And also redirects to the same view user asked for before logging in.
 
-A would you rather game where user can login to view their answered/un-asnwered questions, leaderboard and create new questions.
+## Frameworks and Tools
 
-Also user can see the poll of results of answered questions and can answer unanswered ones.
+### React Hooks
+React Hooks for rendering of all of the views, react-router for the navigation among the views and reactstrap for styling. 
 
-##Skills Used: React Hooks and Redux
-This project uses react hooks for the views and logical components along with the redux to manage the necessary state.
+### Redux
+For redux is used for storing the all the information of the users, questions and answers.
 
+## Important Note
+The application does not uses any databases, the initially loaded data is stored in the project and all the additional users, questions created and everything will be lost upon a refresh.
+
+## Contributions
+Any improvements to the code, additional features and suggestions are welcom
