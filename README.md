@@ -1,5 +1,5 @@
 ## About
-This is a final project by Udacity from React Native Project - React Nanodegree Program
+This is a final project for the second course of Udacity's React Nanodegree Program
 
 ### TL:DR;
 Visit https://would-you-rather-456.web.app/login to view the application.
