@@ -2,7 +2,7 @@
 This is a final project for the second course of Udacity's React Nanodegree Program
 
 ### TL:DR;
-Visit https://would-you-rather-456.web.app/login to view the application.
+Visit https://would-you-rather-456.web.app to view the application.
 
 # Would You Rather
 This web application is an instantiation of would you rather game. Just a quick review, here's how it works: There are many players, each player can add a new question, answer the questions posted by other players and view the number of percentages of the each answer of answered questions. Player can also view leaderboard, where players are ranked in order. Score of a player is calculated by summing up the number of questions asked by the player and numbers of questions answered by the player.
